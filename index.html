@@ -7,98 +7,177 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-
   <!-- Header -->
   <header>
-    <div class="header-container">
-      <div class="logo" style="flex-shrink: 0;">
-        <img src="assets/images/logo.png" alt="LocalEdge AI Logo" style="display: block; margin-left: 0; max-height: 126px; width: auto;" />
+    <div class="header-container" style="position: relative;">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="LocalEdge AI Logo" />
       </div>
-      <nav>
-        <ul style="display: flex; gap: 30px; margin: 0; padding: 0; list-style: none; align-items: center;">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+      <!-- Hamburger toggle for mobile -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+      <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+      <nav class="main-nav" style="margin-left: auto;">
+        <ul style="
+          display: flex;
+          gap: 28px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          align-items: center;
+        ">
+          <li>
+            <a href="#hero" data-en="Home" data-he="בית" class="nav-link nav-scroll" style="font-size: 0.97rem;">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#services" data-en="Services" data-he="שירותים" class="nav-link nav-scroll" style="font-size: 0.97rem;">
+              Services
+            </a>
+          </li>
+          <li>
+            <a href="#about" data-en="About" data-he="עלינו" class="nav-link nav-scroll" style="font-size: 0.97rem;">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#contact" data-en="Contact" data-he="צור קשר" class="nav-link nav-scroll" style="font-size: 0.97rem;">
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
+      <!-- Language Switcher Button -->
+      <button id="lang-switcher" class="lang-switcher-btn" style="font-size: 0.97rem;">
+        עברית
+      </button>
     </div>
+    <style>
+      .nav-link, .lang-switcher-btn {
+        font-size: 0.97rem !important;
+      }
+      @media (max-width: 768px) {
+        .nav-link, .lang-switcher-btn {
+          font-size: 0.95rem !important;
+        }
+      }
+    </style>
+    <script>
+      // Smooth scroll for nav links
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.nav-scroll').forEach(link => {
+          link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              const target = document.querySelector(href);
+              if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+                // Optionally close mobile nav
+                const navToggle = document.getElementById('nav-toggle');
+                if (navToggle && navToggle.checked) navToggle.checked = false;
+              }
+            }
+          });
+        });
+      });
+    </script>
   </header>
 
   <!-- Hero Section -->
   <section id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>AI Solutions for Your Business</h1>
-      <p>Empower your business with cost-effective AI integrations. From chatbots to data analytics, we make AI simple, fast, and affordable.</p>
-      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">
-        Free 30-Minute AI Assessment
+      <h1 id="hero-title" data-en="AI Solutions for Your Business" data-he="פתרונות בינה מלאכותית לעסק שלך">
+        AI Solutions for Your Business
+      </h1>
+      <p data-en="Empower your business with cost-effective AI integrations. From chatbots to data analytics, we make AI simple, fast, and affordable." 
+         data-he="חזק את העסק שלך עם אינטגרציות בינה מלאכותית חסכוניות. מצ'אטבוטים ועד ניתוח נתונים, אנו עושים בינה מלאכותית פשוטה, מהירה וזולה.">
+        Empower your business with cost-effective AI integrations. From chatbots to data analytics, we make AI simple, fast, and affordable.
+      </p>
+      <button class="btn-primary scroll-to-contact preserve-event" data-translate="false" data-en="Get Started" data-he="התחל עכשיו">
+        Get Started
       </button>
     </div>
   </section>
 
   <!-- Services Section -->
   <section id="services" class="container">
-    <h2 class="section-title">Our Services</h2>
+    <h2 class="section-title" data-en="Our Services" data-he="השירותים שלנו">
+      Our Services
+    </h2>
     <div class="services-grid">
-      <!-- Starter Package -->
+      <!-- Service Card 1: Starter Package -->
       <div class="service-card">
-        <img src="assets/images/service-chatbot.png" alt="Starter: Chatbot & Analytics">
+        <img src="assets/images/service-chatbot.png" alt="Starter Package" />
         <div class="service-card-content">
           <div class="service-info">
-            <h3>Starter Package</h3>
-            <p><strong>What's Included:</strong></p>
-            <ul>
-              <li>AI Chatbot Installation (website or Facebook Messenger)</li>
-              <li>Basic Sales & Inventory Dashboard</li>
-              <li>30-Day Post-Launch Support</li>
+            <h3 data-en="Starter Package" data-he="חבילת התחלה">
+              Starter Package
+            </h3>
+            <p data-en="What's Included:" data-he="מה כלול:">What's Included:</p>
+            <ul data-en="<li>AI Chatbot Installation (website or Facebook Messenger)</li><li>Basic Sales & Inventory Dashboard</li><li>30-Day Post-Launch Support</li>" 
+                data-he="<li>התקנת צ'אטבוט בינה מלאכותית (לאתר או Facebook Messenger)</li><li>לוח מחוונים בסיסי למכירות ומלאי</li><li>תמיכה ל-30 יום לאחר ההשקה</li>">
             </ul>
-            <p class="price">Starting at ₪5,000</p>
+            <p class="price" data-en="Starting at ₪5,000" data-he="מתחיל מ-₪5,000">
+              Starting at ₪5,000
+            </p>
           </div>
-          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">
+          <!-- Service Card 1 Button -->
+          <button class="btn-primary scroll-to-contact preserve-event" data-translate="false" data-en="Get Started" data-he="התחל עכשיו">
             Get Started
           </button>
         </div>
       </div>
 
-      <!-- Growth Package -->
+      <!-- Service Card 2: Growth Package -->
       <div class="service-card">
-        <img src="assets/images/service-analytics.png" alt="Growth: Automated Workflows & Email Marketing">
+        <img src="assets/images/service-analytics.png" alt="Growth Package" />
         <div class="service-card-content">
           <div class="service-info">
-            <h3>Growth Package</h3>
-            <p><strong>What's Included:</strong></p>
-            <ul>
-              <li>Starter Package Components</li>
-              <li>Automated Lead-Nurturing Email Campaign</li>
-              <li>Process Automation (e.g., Invoice OCR & Processing)</li>
-              <li>Custom Reporting & KPI Alerts</li>
+            <h3 data-en="Growth Package" data-he="חבילת צמיחה">
+              Growth Package
+            </h3>
+            <p data-en="Growth: Automated Workflows & Email Marketing" data-he="צמיחה: זרימות עבודה אוטומטיות ושיווק בדוא&quot;ל">
+              Growth: Automated Workflows & Email Marketing
+            </p>
+            <p data-en="What's Included:" data-he="מה כלול:">What's Included:</p>
+            <ul data-en="<li>Starter Package Components</li><li>Automated Lead-Nurturing Email Campaign</li><li>Process Automation (e.g., Invoice OCR &amp; Processing)</li><li>Custom Reporting &amp; KPI Alerts</li>" 
+                data-he="<li>מרכיבי חבילת התחלה</li><li>קמפיין דוא&quot;ל לגידול לידים</li><li>אוטומציית תהליכים (למשל, OCR לעיבוד חשבוניות)</li><li>דיווח מותאם אישית והתראות KPI</li>">
             </ul>
-            <p class="price">Starting at ₪12,000</p>
+            <p class="price" data-en="Starting at ₪12,000" data-he="מתחיל מ-₪12,000">
+              Starting at ₪12,000
+            </p>
           </div>
-          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">
+          <!-- Service Card 2 Button -->
+          <button class="btn-primary scroll-to-contact preserve-event" data-translate="false" data-en="Learn More" data-he="למידע נוסף">
             Learn More
           </button>
         </div>
       </div>
 
-      <!-- Custom Package -->
+      <!-- Service Card 3: Custom Package -->
       <div class="service-card">
-        <img src="assets/images/service-customAI.png" alt="Custom: Bespoke AI Development">
+        <img src="assets/images/service-customAI.png" alt="Custom Package" />
         <div class="service-card-content">
           <div class="service-info">
-            <h3>Custom Package</h3>
-            <p><strong>What's Included:</strong></p>
-            <ul>
-              <li>Full AI Workflow Design & Implementation</li>
-              <li>Advanced Machine Learning Models (e.g., Predictive Analytics)</li>
-              <li>On-site Training & Knowledge Transfer</li>
-              <li>Dedicated Support & Monthly Optimization</li>
+            <h3 data-en="Custom Package" data-he="חבילה מותאמת">
+              Custom Package
+            </h3>
+            <p data-en="Custom: Bespoke AI Development" data-he="מותאם אישית: פיתוח בינה מלאכותית">
+              Custom: Bespoke AI Development
+            </p>
+            <p data-en="What's Included:" data-he="מה כלול:">What's Included:</p>
+            <ul data-en="<li>Full AI Workflow Design &amp; Implementation</li><li>Advanced Machine Learning Models (e.g., Predictive Analytics)</li><li>On-site Training &amp; Knowledge Transfer</li><li>Dedicated Support &amp; Monthly Optimization</li>" 
+                data-he="<li>תכנון וביצוע מלא של זרימת עבודה בינה מלאכותית</li><li>מודלים מתקדמים של למידת מכונה (למשל, ניתוח תחזיתי)</li><li>הדרכה בשטח והעברת ידע</li><li>תמיכה ייעודית ואופטימיזציה חודשית</li>">
             </ul>
-            <p class="price">Contact for Pricing</p>
+            <p class="price" data-en="Contact for Pricing" data-he="יצירת קשר לתמחור">
+              Contact for Pricing
+            </p>
           </div>
-          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">
-            Request Quote
+          <!-- Service Card 3 Button -->
+          <button class="btn-primary scroll-to-contact preserve-event" data-translate="false" data-en="Contact for Pricing" data-he="יצור קשר">
+            Contact for Pricing
           </button>
         </div>
       </div>
@@ -108,53 +187,66 @@
   <!-- About Section -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title about-heading">About LocalEdge AI</h2>
+      <h2 class="section-title about-heading" data-en="About LocalEdge AI" data-he="על LocalEdge AI">
+        About LocalEdge AI
+      </h2>
       <div class="about-content">
-        <!-- Text Column -->
         <div class="about-text">
-          <p>
+          <p data-en="LocalEdge AI was founded to help small and medium-sized businesses harness the power of artificial intelligence—without the heavy costs or steep learning curves. We understand the unique challenges of local businesses: limited budgets, tight schedules, and the need for immediate, tangible results." 
+             data-he="LocalEdge AI נוסדה כדי לסייע לעסקים קטנים ובינוניים לנצל את כוח הבינה המלאכותית—ללא עלויות כבדות או עקומות למידה תלולות. אנחנו מבינים את האתגרים הייחודיים של עסקים מקומיים: תקציבים מוגבלים, לוחות זמנים צפופים, והצורך בתוצאות מידיות ומוחשיות.">
             LocalEdge AI was founded to help small and medium-sized businesses harness the power of artificial intelligence—without the heavy costs or steep learning curves. We understand the unique challenges of local businesses: limited budgets, tight schedules, and the need for immediate, tangible results.
           </p>
-          <p>
+          <p data-en="Our mission is to deliver AI-driven solutions that drive growth, streamline operations, and boost customer satisfaction. Whether you’re a retail shop looking to automate customer service, a service provider wanting data-driven insights, or a local café aiming to increase foot traffic with targeted marketing, LocalEdge AI has you covered." 
+             data-he="המשימה שלנו היא לספק פתרונות מונעי בינה מלאכותית שמניעים צמיחה, מייעלים תהליכים ומגבירים את שביעות רצון הלקוחות. בין אם אתם חנות קמעונאית שמחפשת לאוטומט שירות לקוחות, ספק שירותים שמעוניין בתובנות מבוססות נתונים, או בית קפה מקומי ששואף להגדיל את תנועת הלקוחות בעזרת שיווק ממוקד, LocalEdge AI כאן בשבילכם.">
             Our mission is to deliver AI-driven solutions that drive growth, streamline operations, and boost customer satisfaction. Whether you’re a retail shop looking to automate customer service, a service provider wanting data-driven insights, or a local café aiming to increase foot traffic with targeted marketing, LocalEdge AI has you covered.
           </p>
         </div>
-
-        <!-- Image Column -->
         <div class="about-image">
-          <img
-            src="assets/images/about-illustration.png"
-            alt="Abstract network illustrating AI connections"
-          />
+          <img src="assets/images/about-illustration.png" alt="About LocalEdge AI" />
         </div>
       </div>
     </div>
   </section>
 
-
   <!-- Contact Section -->
   <section id="contact" class="container">
-    <h2 class="section-title">Get in Touch</h2>
-    <p style="text-align: center; margin-bottom: 30px;">
+    <h2 class="section-title" data-en="Get in Touch" data-he="צור קשר">
+      Get in Touch
+    </h2>
+    <p style="text-align: center; margin-bottom: 30px;" 
+       data-en="Ready to start your AI journey? Fill out the form below, and we’ll schedule your free 30-minute AI assessment." 
+       data-he="מוכן להתחיל את מסע הבינה המלאכותית שלך? מלא את הטופס שלהלן ונקבע אבחון חינם של 30 דקות.">
       Ready to start your AI journey? Fill out the form below, and we’ll schedule your free 30-minute AI assessment.
     </p>
-    <form class="contact-form" action="https://formsubmit.co/david@classaplus.com" method="POST" />
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" placeholder="Your full name" required />
+    <form class="contact-form" action="https://formsubmit.co/david@classaplus.com" method="POST">
+      <label for="fullname" data-en="Full Name" data-he="שם מלא">
+        Full Name
+      </label>
+      <input type="text" id="fullname" name="fullname" placeholder="Your full name" required />
 
-      <label for="email">Email Address</label>
+      <label for="email" data-en="Email Address" data-he="כתובת דוא&quot;ל">
+        Email Address
+      </label>
       <input type="email" id="email" name="email" placeholder="yourname@example.com" required />
 
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="phone" placeholder="+972-5X-XXXXXXX" />
+      <label for="phone" data-en="Phone Number" data-he="מספר טלפון">
+        Phone Number
+      </label>
+      <input type="tel" id="phone" name="phone" placeholder="+972-5X-XXXXXXX" required />
 
-      <label for="business">Business Name</label>
+      <label for="business" data-en="Business Name" data-he="שם העסק">
+        Business Name
+      </label>
       <input type="text" id="business" name="business" placeholder="Your business name" required />
 
-      <label for="message">Brief Description of Your Needs</label>
+      <label for="message" data-en="Brief Description of Your Needs" data-he="תיאור קצר של הצרכים שלך">
+        Brief Description of Your Needs
+      </label>
       <textarea id="message" name="message" placeholder="Tell us what you’d like to achieve with AI…" required></textarea>
 
-      <button type="submit">Submit</button>
+      <button type="submit" class="btn-primary" data-en="Submit" data-he="שלח">
+        Submit
+      </button>
     </form>
   </section>
 
@@ -162,29 +254,33 @@
   <footer>
     <div class="container footer-flex">
       <div class="footer-contact">
-        <h3>Contact</h3>
-        <ul class="footer-contact-list">
-          <li>
+        <h3 data-en="Contact" data-he="צור קשר">
+          Contact
+        </h3>
+        <ul class="footer-contact-list" style="list-style: none; padding: 0;"></ul>
+          <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+            <img src="assets/images/icon-mail.svg" alt="Email" class="footer-icon" style="width: 20px; height: 20px;" />
             <a href="mailto:contact@classaplus.org">
-              <img src="assets/images/icon-mail.svg" alt="Email" class="footer-icon" />
               info@localedgeai.tech
             </a>
           </li>
-          <li>
+          <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+            <img src="assets/images/icon-phone.svg" alt="Phone" class="footer-icon" style="width: 20px; height: 20px;" />
             <a href="tel:+972539310919">
-              <img src="assets/images/icon-phone.svg" alt="Phone" class="footer-icon" />
               +972-53-931-0919
             </a>
           </li>
-          <li>
-            <img src="assets/images/icon-location.svg" alt="Location" class="footer-icon" />
-            31 Hanavi Tzfanya<br>Beit Shemesh, Israel.
+          <li style="display: flex; align-items: center; gap: 8px;">
+            <img src="assets/images/icon-location.svg" alt="Location" class="footer-icon" style="width: 20px; height: 20px;" />
+            <span>
+              31 Hanavi Tzfanya<br>Beit Shemesh, Israel.
+            </span>
           </li>
         </ul>
       </div>
       <div class="footer-brand">
         <img src="assets/images/logo-footer.png" alt="LocalEdge AI Logo" class="footer-logo" />
-        <p class="footer-tagline" style="display: inline-block; text-align: left;">
+        <p class="footer-tagline" data-en="Empowering Your Business with AI" data-he="מעצימים את העסק שלך עם בינה מלאכותית">
           Empowering Your Business<br>with AI
         </p>
       </div>
@@ -194,5 +290,8 @@
     </div>
   </footer>
 
+  <!-- JavaScript for Language Switching -->
+  
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -41,14 +41,11 @@ header {
   justify-content: space-between;
   padding-left: 80px !important;
   padding-right: 80px !important;
-  max-width: none;  /* Remove max-width constraint */
-  margin: 0;  /* Remove auto margins */
+  /* Removed max-width and auto margins for full-width header */
 }
 
-/* Remove or modify the .container class application in your HTML for the header */
-
 .logo img {
-  height: 200px;
+  height: 150px; /* Reduced logo size */
   width: auto;
   margin-left: 0;
 }
@@ -61,7 +58,7 @@ nav ul {
 
 nav a {
   font-weight: 500;
-  color: #000000;    /* Darker teal for better contrast */
+  color: #000000;
   font-size: 1.2rem;
 }
 
@@ -72,22 +69,21 @@ nav a:hover {
 /* ===== Hero ===== */
 #hero {
   position: relative;
-  /* Define two layered backgrounds: a gradient (scrolls normally) and an image (fixed) */
+  /* Two layered backgrounds: gradient (scrolls) and image (fixed) */
   background-image: 
     linear-gradient(to bottom, rgba(1, 59, 73, 0) 70%, rgba(0, 54, 72, 0.85) 100%),
     url('../images/hero_bg1.png');
   background-position: center, center;
   background-size: cover, cover;
   background-repeat: no-repeat, no-repeat;
-  background-attachment: scroll, fixed; /* The gradient scrolls, the image stays fixed */
+  background-attachment: scroll, fixed;
   height: 80vh;
   display: flex;
-  align-items: flex-start;   /* changed from center */
-  justify-content: flex-start; /* changed from center */
+  align-items: flex-start;
+  justify-content: flex-start;
   color: #fff;
 }
 
-/* Semi‐transparent overlay to improve text contrast */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -107,7 +103,7 @@ nav a:hover {
   position: relative;
   max-width: 600px;
   padding: 20px;
-  padding-left: 76px; /* Reduce padding to match header */
+  padding-left: 76px; /* Adjust padding to match header */
   z-index: 1;
 }
 
@@ -149,8 +145,8 @@ section {
 .section-title {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 40px;
   margin-top: 40px;
+  margin-bottom: 40px;
   color: #000000;
 }
 
@@ -165,10 +161,12 @@ section {
   border: 1px solid #b3d9d9;
   border-radius: 8px;
   overflow: hidden;
-  transition: box-shadow 0.2s ease-in-out;
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  transition: box-shadow 0.2s ease-in-out;
 }
 
 .service-card:hover {
@@ -176,27 +174,40 @@ section {
 }
 
 .service-card img {
-    height: 180px;
-    object-fit: cover;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain; /* this keeps the entire image visible */
+  display: block;
+  background: #ffffff;
 }
 
 .service-card-content {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  gap: 10px;
+  width: 100%;
 }
 
 .service-info {
   flex: 1;
 }
 
+.service-card {
+  position: relative;
+}
+
 .service-card .btn-primary {
-  margin-top: 20px;
-  align-self: flex-start;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  margin-top: 0;
+  align-self: auto;
+}
+.service-card-content {
+  position: relative;
+  padding-bottom: 60px; /* add space for button */
 }
 
 .service-card-content h3 {
@@ -215,7 +226,26 @@ section {
   color: #222;
 }
 
-/* ===== About Section ===== */
+/* Default service card layout (stacked: image on top) */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* When in Hebrew, adjust ordering: move text above image if needed */
+.service-card.rtl-service {
+  /* For instance, if you want to swap the order only for text appearance but keep image on top,
+     you might adjust specific element order rather than changing flex-direction */
+}
+
+/* Optionally, adjust text alignment if required */
+.service-card.rtl-service .service-card-content {
+  text-align: right;
+}
+
+/* --- About Section --- */
 #about {
   position: relative;
   background: url('../images/hero_bg1.png') no-repeat center center fixed;
@@ -227,41 +257,33 @@ section {
 }
 
 #about::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff00;  /* Adjust the opacity for faded effect */
-    z-index: 1;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent; /* no overlay by default */
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Ensure the heading is above the overlay */
 #about .about-heading,
 #about h2.about-heading {
-    position: relative;
-    z-index: 2;
-}
-
-.about-content {
-  position: relative;
-  z-index: 2;  /* Ensure content appears above the overlay */
-}
-
-/* Flex container for text + image */
-.about-content {
-  display: flex;
-  align-items: center;
-  gap: 40px;               /* Space between text and image */
-  max-width: 1100px;       /* Center and constrain width */
-  margin: 0 auto;          /* Center container horizontally */
   position: relative;
   z-index: 2;
 }
 
-/* Text “card” styling */
+.about-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 .about-text {
   flex: 1 1 400px;
   background-color: #ffffff;
@@ -276,7 +298,6 @@ section {
   line-height: 1.6;
 }
 
-/* Image styling */
 .about-image {
   flex: 1 1 400px;
   display: flex;
@@ -289,18 +310,17 @@ section {
   height: auto;
 }
 
-/* ===== Responsive: stack vertically on small screens ===== */
+/* Responsive stacking for About section */
 @media (max-width: 768px) {
   .about-content {
     flex-direction: column;
     gap: 24px;
   }
-
+  
   .about-text {
     padding: 24px 20px;
   }
 }
-
 
 /* --- Contact Form --- */
 .contact-form {
@@ -331,15 +351,15 @@ section {
 }
 
 .contact-form button {
-    background-color: #40e0d0;
-    color: #fff;
-    padding: 14px 28px;
-    border: 2px solid #008080;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    margin-bottom: 40px; /* Add space below the button */
+  background-color: #40e0d0;
+  color: #fff;
+  padding: 14px 28px;
+  border: 2px solid #008080;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  margin-bottom: 40px;
 }
 
 .contact-form button:hover {
@@ -347,15 +367,14 @@ section {
   border-color: #005f5f;
 }
 
-/* ===== Customized Footer ===== */
+/* ===== Footer ===== */
 footer {
-  background: #00020e; /* Solid dark background */
+  background: #00020e;
   padding: 60px 20px 40px;
   color: #f1f1f1;
   font-family: sans-serif;
 }
 
-/* Ensure the footer flex container lays out the two sections in a row */
 .footer-flex {
   display: flex;
   justify-content: space-between;
@@ -369,7 +388,6 @@ footer {
   text-align: left;
 }
 
-/* Place the logo and tagline at the right */
 .footer-brand {
   order: 2;
   flex: 1;
@@ -379,16 +397,14 @@ footer {
   align-items: flex-end;
 }
 
-/* Adjust the logo size and spacing */
 .footer-logo {
   max-width: 180px;
   margin-bottom: 10px;
 }
 
-/* Optional: style the tagline if needed */
 .footer-tagline {
   font-size: 0.9rem;
-  color: #cccccc; /* Lighter text for contrast */
+  color: #cccccc;
 }
 
 .footer-bottom {
@@ -399,15 +415,185 @@ footer {
   padding-top: 20px;
 }
 
-.about-heading {
-  color: #ffffff !important;      /* Set text color to black */
-  background-color: transparent !important;  /* Remove any background color */
-  text-shadow: none !important;               /* Remove any text shadow if present */
-}
-
+/* --- Translatable Headings (e.g., About) --- */
+.about-heading, 
 section#about h2.about-heading {
   color: #ffffff !important;
   background-color: transparent !important;
   text-shadow: none !important;
+}
+
+/* ===== Navigation: Hamburger Menu for Mobile ===== */
+/* Hide the checkbox toggle by default */
+.nav-toggle {
+  display: none;
+}
+
+/* Hide hamburger label on desktop */
+.nav-toggle-label {
+  display: none;
+}
+
+    :root {
+      --turquoise: #1ccfcf;
+      --nav-bg: linear-gradient(90deg, #f8fafc 60%, #e3f0ff 100%);
+    }
+    .nav-link {
+      position: relative;
+      padding: 8px 18px;
+      border-radius: 22px;
+      font-weight: 600;
+      color: #222;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      background: var(--nav-bg);
+      cursor: pointer;
+    }
+    .nav-link:hover,
+    .nav-link:focus {
+      background: var(--turquoise) !important;
+      color: #fff !important;
+    }
+    .lang-switcher-btn {
+      background: var(--turquoise);
+      color: #fff;
+      border: none;
+      border-radius: 22px;
+      padding: 8px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      position: relative;
+      margin-left: 18px;
+      z-index: 2;
+      align-self: center;
+    }
+    .lang-switcher-btn:hover,
+    .lang-switcher-btn:focus {
+      background: #fff !important;
+      color: var(--turquoise) !important;
+    }
+    @media (max-width: 768px) {
+      /* Stack header items vertically */
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+      /* Adjust hero section for mobile */
+      #hero {
+        height: auto;
+        padding: 40px 20px;
+      }
+      .hero-content {
+        text-align: center;
+        padding: 0 20px;
+      }
+      /* Stack footer items vertically */
+      .footer-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-contact, .footer-brand {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Adjust unordered list markers in RTL service cards */
+    .service-card.rtl-service ul {
+      direction: rtl;
+      text-align: right;
+      /* Optional: adjust padding if needed */
+      padding-right: 20px;
+    }
+
+    .service-card.rtl-service ul li {
+      list-style-position: inside;
+    }
+  
+
+/* Mobile Styles for Navigation */
+@media (max-width: 768px) {
+  /* Show hamburger menu label */
+  .nav-toggle-label {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 22px;
+  }
+  /* Create hamburger icon lines */
+  .nav-toggle-label span,
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+  }
+  .nav-toggle-label span {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .nav-toggle-label span::before {
+    content: '';
+    top: -8px;
+  }
+  .nav-toggle-label span::after {
+    content: '';
+    top: 8px;
+  }
+  
+  /* Hide the navigation menu by default */
+  nav {
+    display: none;
+    width: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+  }
+  
+  /* When the checkbox is checked, show the nav */
+  .nav-toggle:checked ~ nav {
+    display: block;
+  }
+  
+  /* Stack nav items vertically */
+  nav ul {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  nav ul li {
+    margin: 10px 0;
+    text-align: center;
+  }
+  nav ul li a {
+    color: #333;
+    font-size: 1.2rem;
+  }
+  
+  /* Adjust header container alignment for mobile */
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 }
 
