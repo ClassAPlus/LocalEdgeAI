@@ -164,9 +164,8 @@ section {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: center;
   transition: box-shadow 0.2s ease-in-out;
+  height: 100%; /* Ensure all cards are same height */
 }
 
 .service-card:hover {
@@ -182,33 +181,29 @@ section {
 }
 
 .service-card-content {
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 100%;
+  padding: 20px;
+  flex: 1; /* Take up remaining space */
+  min-height: 400px; /* Consistent minimum height */
 }
 
 .service-info {
-  flex: 1;
-}
-
-.service-card {
-  position: relative;
+  flex: 1; /* Allow info section to grow */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .service-card .btn-primary {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  margin-top: 0;
-  margin-bottom: 16px;
-  align-self: auto;
+  margin-top: 20px; /* Consistent top margin */
+  margin-bottom: 20px; /* Reset bottom margin */
+  align-self: stretch; /* Make button full width */
 }
+
 .service-card-content {
   position: relative;
-  padding-bottom: 60px; /* add space for button */
+  padding-bottom: 0; /* no extra space needed for button */
 }
 
 .service-card-content h3 {
@@ -513,8 +508,7 @@ section#about h2.about-heading {
     .service-card.rtl-service ul {
       direction: rtl;
       text-align: right;
-      /* Optional: adjust padding if needed */
-      padding-right: 20px;
+      padding-left: 20px; /* switch padding to left */
     }
 
     .service-card.rtl-service ul li {
@@ -595,6 +589,13 @@ section#about h2.about-heading {
     align-items: center;
     padding-left: 20px !important;
     padding-right: 20px !important;
+  }
+}
+
+/* Only on larger screens */
+@media (min-width: 769px) {
+  .service-card-content {
+    min-height: 350px; /* Adjust this value as needed */
   }
 }
 
